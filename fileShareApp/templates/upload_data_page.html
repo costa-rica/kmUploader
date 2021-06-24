@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %} Recalls Dash {% endblock %}
+{% block main %}
+
+<section class="dashboard">
+    
+    <div class="container">
+        <form method="POST" action="" enctype="multipart/form-data">
+            <div class="file_input">
+                <input type="file" name="upload_file"  multiple>
+            </div>
+            <input type="submit" class="update_inv" name="upload_file_button" value="Upload">
+
+            <div>
+                {% for i in upload_data_file_list %}
+                {{ i }}<br/>
+                {% endfor %}
+            </div>
+        </form>
+
+    </div>
+</section>
+{% endblock %}

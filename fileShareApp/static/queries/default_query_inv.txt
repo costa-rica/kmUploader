@@ -1,0 +1,1 @@
+{"MAKE": ["KIA", "exact"], "category1": ["", "string_contains"]}

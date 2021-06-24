@@ -1,0 +1,9 @@
+__pycache__/
+*.ipynb
+fileShareApp/__pycache__/
+*.zip
+*.xlsx
+awsVmSockMethod/
+*log.txt
+investigations_recall_files/
+fileShareApp/static/files/

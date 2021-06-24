@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %} Home {% endblock %}
+{% block main %}
+<section class="home">
+    <div class="container">
+        <div class="home_label">
+            <h4>KM File Upload Site</h4>
+            <br/><br/>
+        </div>
+        <div class="select_page">
+
+            
+            <br/>
+            <a href="{{ url_for('users.upload_data_page') }}">Upload Data Page</a>
+            
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
