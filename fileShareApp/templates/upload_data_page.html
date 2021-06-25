@@ -12,8 +12,12 @@
             <input type="submit" class="update_inv" name="upload_file_button" value="Upload">
 
             <div>
-                {% for i in upload_data_file_list %}
-                {{ i }}<br/>
+                {% for i,j in files_info_lists %}
+                <div>
+                    <a href="{{ url_for('users.download_data_page', file_name= i ) }}">{{ i }}</a> <i>{{ j }}</i>
+                    <input type="submit" class="search_remove_category_button" name="{{ i }}" value="delete">
+                </div>
+                
                 {% endfor %}
             </div>
         </form>

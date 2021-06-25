@@ -293,14 +293,41 @@ def database_upload():
 def upload_data_page():
     
     upload_data_file_list = os.listdir(current_app.config['UPLOAD_KIA'])
+    
+    size_list=[]
+    for i in upload_data_file_list:
+        size=os.path.getsize(os.path.join(current_app.config['UPLOAD_KIA'],i))
+        print('size::::', size)
+        if len(str(size))>9:
+            size= str(f"{round(size/10**9,1):,}") +' GB'
+        elif len(str(size))>3:
+            size= str(f"{round(size/10**6,2):,}") +' MB'
+        else:
+            size=str(f"{size:,}")+' bytes'
+        size_list.append(size)
+    
+    files_info_lists=zip(upload_data_file_list,size_list)
+    
     if request.method == 'POST':
-        #SAVE file in dir named after NHTSA action num _ dash_id
-        uploaded_file = request.files['upload_file']
-        # current_inv_files_dir_name = 'Investigation_' + dash_inv.NHTSA_ACTION_NUMBER + '_'+str(inv_id_for_dash)
-        # current_inv_files_dir=os.path.join(current_app.config['KIA_UPLOAD'], current_inv_files_dir_name)
-        uploaded_file.save(os.path.join(current_app.config['UPLOAD_KIA'],uploaded_file.filename))
-
-
-        return redirect(url_for('users.upload_data_page'))
+        formDict = request.form.to_dict()
+        if request.files.get('upload_file'):
+            uploaded_file = request.files['upload_file']
+            uploaded_file.save(os.path.join(current_app.config['UPLOAD_KIA'],uploaded_file.filename))
+            return redirect(url_for('users.upload_data_page'))
+        else:
+            for i,j in formDict.items():
+                os.remove(os.path.join(current_app.config['UPLOAD_KIA'], i))
+                # os.remove(os.path.join(os.path.dirname(__file__), 'static\\upload_kia',i))
+            print('formDict:::', formDict)
+            return redirect(url_for('users.upload_data_page'))
         
-    return render_template('upload_data_page.html', upload_data_file_list=upload_data_file_list)
+    return render_template('upload_data_page.html', files_info_lists=files_info_lists)
+    
+    
+@users.route("/download_data_page", methods=["GET","POST"])
+@login_required
+def download_data_page():
+    file_name=request.args.get('file_name')
+
+    return send_from_directory(os.path.join(
+        current_app.config['UPLOAD_KIA']),file_name, as_attachment=True)
