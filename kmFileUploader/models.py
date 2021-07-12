@@ -1,4 +1,4 @@
-from fileShareApp import db, login_manager
+from kmFileUploader import db, login_manager
 from datetime import datetime, date
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app

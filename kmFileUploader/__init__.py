@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from fileShareApp.config import Config
+from kmFileUploader.config import Config
 from flask_migrate import Migrate
 
 import logging
@@ -24,7 +24,7 @@ def create_app(config_class=Config):
     logger = logging.getLogger(__name__)
     stderr_handler = logging.StreamHandler(sys.stderr)
     logger.addHandler(stderr_handler)
-    file_handler = logging.FileHandler('fileShareApp_log.txt')
+    file_handler = logging.FileHandler('kmFileUploader_log.txt')
     file_handler.setLevel(logging.DEBUG)
     logger.addHandler(file_handler)
     # app.logger.addHandler(file_handler)
@@ -37,10 +37,10 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
 
-    # from fileShareApp.inv_blueprint.routes import inv_blueprint
-    # from fileShareApp.re_blueprint.routes import re_blueprint
-    from fileShareApp.users.routes import users
-    from fileShareApp.errors.handlers import errors
+    # from kmFileUploader.inv_blueprint.routes import inv_blueprint
+    # from kmFileUploader.re_blueprint.routes import re_blueprint
+    from kmFileUploader.users.routes import users
+    from kmFileUploader.errors.handlers import errors
     # app.register_blueprint(inv_blueprint)
     # app.register_blueprint(re_blueprint)
     app.register_blueprint(users)

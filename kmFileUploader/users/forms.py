@@ -4,10 +4,10 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField\
     , TextAreaField, DateTimeField, FloatField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField
-from fileShareApp.models import User, Post, Investigations
+from kmFileUploader.models import User, Post, Investigations
 from flask_login import current_user
 from datetime import datetime
-from fileShareApp import db
+from kmFileUploader import db
 
 
 

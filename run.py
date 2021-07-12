@@ -1,4 +1,4 @@
-from fileShareApp import create_app
+from kmFileUploader import create_app
 
 
 app = create_app()

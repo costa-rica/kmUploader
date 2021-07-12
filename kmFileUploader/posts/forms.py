@@ -7,7 +7,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 # from dmrApp.models import User, Restaurants, Employeeroles
 from flask_login import current_user
 from datetime import datetime
-from fileShareApp import db
+from kmFileUploader import db
 
 from flask_wtf.file import FileField, FileAllowed #used for image uploading
 

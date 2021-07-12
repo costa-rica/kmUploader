@@ -1,8 +1,8 @@
 from flask import Blueprint
 from flask import render_template, url_for, redirect, flash, request, abort, session,\
     Response, current_app, send_from_directory
-from fileShareApp import db, bcrypt, mail
-from fileShareApp.models import User, Post, Investigations, Tracking_inv, \
+from kmFileUploader import db, bcrypt, mail
+from kmFileUploader.models import User, Post, Investigations, Tracking_inv, \
     Saved_queries_inv, Recalls, Tracking_re, Saved_queries_re
 from flask_login import login_user, current_user, logout_user, login_required
 import secrets
@@ -16,7 +16,7 @@ import io
 from wsgiref.util import FileWrapper
 import xlsxwriter
 from flask_mail import Message
-from fileShareApp.re_blueprint.utils import recalls_query_util, queryToDict, search_criteria_dictionary_util, \
+from kmFileUploader.re_blueprint.utils import recalls_query_util, queryToDict, search_criteria_dictionary_util, \
     update_recall, create_categories_xlsx, update_files_re, column_names_dict_re_util, \
     column_names_re_util
 import openpyxl
@@ -24,15 +24,15 @@ from werkzeug.utils import secure_filename
 import json
 import glob
 import shutil
-from fileShareApp.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, \
+from kmFileUploader.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, \
     RequestResetForm, ResetPasswordForm
 import re
 import logging
-from fileShareApp.inv_blueprint.utils_general import category_list_dict_util, remove_category_util
+from kmFileUploader.inv_blueprint.utils_general import category_list_dict_util, remove_category_util
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler('fileShareApp_re_blueprint_log.txt')
+file_handler = logging.FileHandler('kmFileUploader_re_blueprint_log.txt')
 logger.addHandler(file_handler)
 # logger = logging.getLogger(__name__)
 

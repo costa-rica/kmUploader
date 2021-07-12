@@ -2,10 +2,10 @@ from flask import Blueprint
 
 from flask import render_template, url_for, redirect, flash, request, abort, session,\
     Response, current_app, send_from_directory
-from fileShareApp import db, bcrypt, mail
-from fileShareApp.models import User, Post, Investigations, Tracking_inv, \
+from kmFileUploader import db, bcrypt, mail
+from kmFileUploader.models import User, Post, Investigations, Tracking_inv, \
     Saved_queries_inv, Recalls, Tracking_re, Saved_queries_re
-from fileShareApp.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, \
+from kmFileUploader.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, \
     RequestResetForm, ResetPasswordForm
 from flask_login import login_user, current_user, logout_user, login_required
 import secrets
@@ -18,7 +18,7 @@ import io
 from wsgiref.util import FileWrapper
 import xlsxwriter
 from flask_mail import Message
-from fileShareApp.users.utils import save_picture, send_reset_email, userPermission, \
+from kmFileUploader.users.utils import save_picture, send_reset_email, userPermission, \
     formatExcelHeader
 
 users = Blueprint('users', __name__)
@@ -215,14 +215,14 @@ def download_db_workbook():
     # workbook_name=request.args.get('workbook_name')
     workbook_name = os.listdir(current_app.config['FILES_DATABASE'])[0]
     print('file:::', os.path.join(current_app.root_path, 'static','files_database'),workbook_name)
-    file_path = r'D:\OneDrive\Documents\professional\20210610kmDashboard2.0\fileShareApp\static\files_database\\'
+    file_path = r'D:\OneDrive\Documents\professional\20210610kmDashboard2.0\kmFileUploader\static\files_database\\'
     
     return send_from_directory(os.path.join(current_app.config['FILES_DATABASE']),workbook_name, as_attachment=True)
     
     # return send_from_directory(os.path.join(current_app.config['FILES_DATABASE']),workbook_name, as_attachment=True)
     
     # return send_from_directory(os.path.join(current_app.root_path, 'static','files_database'),"database_table.xlsx", as_attachment=True)
-    # return send_from_directory('D:\\OneDrive\\Documents\\professional\\20210610kmDashboard2.0\\fileShareApp\\static\\files_database',"database_table.xlsx", as_attachment=True)
+    # return send_from_directory('D:\\OneDrive\\Documents\\professional\\20210610kmDashboard2.0\\kmFileUploader\\static\\files_database',"database_table.xlsx", as_attachment=True)
 
 
 @users.route('/database_delete_data', methods=["GET","POST"])

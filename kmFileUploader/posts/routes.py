@@ -2,11 +2,11 @@ from flask import Blueprint
 
 from flask import render_template, url_for, redirect, flash, request, abort, session,\
     Response, current_app
-from fileShareApp import db, bcrypt, mail
-from fileShareApp.models import User, Post, Investigations, Tracking_inv, \
+from kmFileUploader import db, bcrypt, mail
+from kmFileUploader.models import User, Post, Investigations, Tracking_inv, \
     Saved_queries_inv, Recalls, Tracking_re, Saved_queries_re
-from fileShareApp.posts.forms import PostForm
-from fileShareApp.posts.utils import saveScreenshot
+from kmFileUploader.posts.forms import PostForm
+from kmFileUploader.posts.utils import saveScreenshot
 from flask_login import login_user, current_user, logout_user, login_required
 import secrets
 import os
