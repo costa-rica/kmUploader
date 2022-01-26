@@ -2,7 +2,7 @@ import os
 import json
 
 if os.environ.get('COMPUTERNAME')=='CAPTAIN2020':
-    with open(r'D:\OneDrive\Documents\professional\config_files\config_km_dashboard.json') as config_file:
+    with open(r"D:\OneDrive\Documents\projects\config_files\config_km_dashboard.json") as config_file:
         config = json.load(config_file)
 elif os.environ.get('USER')=='sanjose':
     with open('/home/sanjose/Documents/environments/config.json') as config_file:
@@ -15,7 +15,7 @@ else:
 
 class Config:
     SECRET_KEY = config.get('SECRET_KEY_DMR')
-    SQLALCHEMY_DATABASE_URI = config.get('SQL_URI_FILESHAREAPP')
+    SQLALCHEMY_DATABASE_URI = config.get('SQL_URI_UPLOADERAPP')
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True

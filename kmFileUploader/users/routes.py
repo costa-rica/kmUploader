@@ -21,14 +21,21 @@ from flask_mail import Message
 from kmFileUploader.users.utils import save_picture, send_reset_email, userPermission, \
     formatExcelHeader
 
+import sqlalchemy as sa
+
 users = Blueprint('users', __name__)
 
 
 
 @users.route("/home")
-@login_required
+# @login_required
 def home():
-    
+    if 'users' in sa.inspect(db.engine).get_table_names():
+        print('db already exists')
+    else:
+        
+        db.create_all()
+        print('db created',db.engine)
     return render_template('home.html')
 
 
